@@ -9,13 +9,11 @@ import oscilloscope.view.MainWindowViewController;
 
 import java.io.IOException;
 
-
 public class Main extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
-	
+
 	public Main() {
-	
 
 	}
 
@@ -27,9 +25,6 @@ public class Main extends Application {
 		this.primaryStage.setMinHeight(600);
 		initRootLayout();
 	}
-
-
-
 
 	public void initRootLayout() {
 		try {
@@ -50,11 +45,6 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-
-
-
-
-
 
 	public static void main(String[] args) {
 		launch(args);
