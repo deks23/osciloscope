@@ -1,0 +1,13 @@
+.toggle-button{
+	-fx-background-image: url("on.png");
+	-fx-background-repeat: no-repeat;
+ 	-fx-background-position: center;
+  	-fx-background-size: cover;
+}
+
+.toggle-button:selected{
+	-fx-background-image: url("off.png");
+	-fx-background-repeat: no-repeat;
+  	-fx-background-position: center;
+  	-fx-background-size: cover;
+}

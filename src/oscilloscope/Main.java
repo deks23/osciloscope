@@ -20,7 +20,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Malarze");
+		this.primaryStage.setTitle("Osciloscope");
 		this.primaryStage.setMinWidth(400);
 		this.primaryStage.setMinHeight(600);
 		initRootLayout();
@@ -32,7 +32,7 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("view/MainWindowView.fxml"));
 			rootLayout = (BorderPane) loader.load();
-
+			rootLayout.getStylesheets().add(getClass().getResource("view/style.css").toExternalForm());
 			// Show the scene containing the root layout.
 			Scene scene = new Scene(rootLayout);
 

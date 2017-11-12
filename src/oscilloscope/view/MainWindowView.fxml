@@ -3,6 +3,7 @@
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
@@ -10,15 +11,16 @@
    <right>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Slider fx:id="firstFrequency" layoutX="30.0" layoutY="63.0" />
-            <Slider fx:id="secondFrequency" layoutX="30.0" layoutY="88.0" />
-            <Slider fx:id="firstPhase" layoutX="30.0" layoutY="127.0" />
-            <Slider fx:id="secondPhase" layoutX="30.0" layoutY="164.0" />
+            <Slider fx:id="firstFrequency" layoutX="30.0" layoutY="63.0" max="10.0" />
+            <Slider fx:id="secondFrequency" layoutX="30.0" layoutY="88.0" max="10.0" />
+            <Slider fx:id="firstPhase" layoutX="30.0" layoutY="127.0" max="10.0" />
+            <Slider fx:id="secondPhase" layoutX="30.0" layoutY="164.0" max="10.0" />
             <Label fx:id="lab" layoutX="73.0" layoutY="258.0" text="Label" />
+            <ToggleButton layoutX="30.0" layoutY="231.0" mnemonicParsing="false" onAction="#buttonPress" prefHeight="96.0" prefWidth="102.0" />
          </children>
       </AnchorPane>
    </right>
    <left>
-      <Canvas height="402.0" width="280.0" BorderPane.alignment="CENTER" />
+      <Canvas fx:id="figure" height="402.0" width="280.0" BorderPane.alignment="CENTER" />
    </left>
 </BorderPane>
