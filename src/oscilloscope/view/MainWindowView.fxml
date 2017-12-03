@@ -1,26 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oscilloscope.view.MainWindowViewController">
-   <right>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oscilloscope.view.MainWindowViewController">
+   <bottom>
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" BorderPane.alignment="CENTER">
          <children>
-            <Slider fx:id="firstFrequency" layoutX="30.0" layoutY="63.0" max="10.0" />
-            <Slider fx:id="secondFrequency" layoutX="30.0" layoutY="88.0" max="10.0" />
-            <Slider fx:id="firstPhase" layoutX="30.0" layoutY="127.0" max="10.0" />
-            <Slider fx:id="secondPhase" layoutX="30.0" layoutY="164.0" max="10.0" />
-            <Label fx:id="lab" layoutX="73.0" layoutY="258.0" text="Label" />
-            <ToggleButton layoutX="30.0" layoutY="231.0" mnemonicParsing="false" onAction="#buttonPress" prefHeight="96.0" prefWidth="102.0" />
+            <Slider fx:id="firstFrequency" layoutX="80.0" layoutY="193.0" max="10.0" AnchorPane.leftAnchor="20.0" />
+            <Slider fx:id="secondFrequency" layoutX="300.0" layoutY="193.0" max="10.0" AnchorPane.rightAnchor="20.0" />
+            <Slider fx:id="firstPhase" layoutX="72.0" layoutY="234.0" max="10.0" AnchorPane.leftAnchor="20.0" />
+            <Slider fx:id="secondPhase" layoutX="300.0" layoutY="234.0" max="10.0" AnchorPane.rightAnchor="20.0" />
+            <ToggleButton layoutX="319.0" layoutY="276.0" mnemonicParsing="false" onAction="#buttonPress" prefHeight="96.0" prefWidth="102.0" />
+            <ImageView fx:id="pic" fitHeight="86.0" fitWidth="98.0" layoutX="57.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@knob_Base.png" />
+               </image>
+            </ImageView>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 100;" />
          </children>
       </AnchorPane>
-   </right>
-   <left>
-      <Canvas fx:id="figure" height="402.0" width="280.0" BorderPane.alignment="CENTER" />
-   </left>
+   </bottom>
+   <top>
+      <AnchorPane prefHeight="243.0" prefWidth="460.0" BorderPane.alignment="CENTER">
+         <children>
+            <Canvas fx:id="figure" height="223.0" width="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+         </children>
+      </AnchorPane>
+   </top>
 </BorderPane>

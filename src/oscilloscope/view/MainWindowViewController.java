@@ -3,17 +3,25 @@ package oscilloscope.view;
 import javafx.scene.image.Image;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import oscilloscope.Main;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ComboBox;
 import java.lang.Math;
 
+import com.sun.javafx.geom.Rectangle;
+
+import javafx.scene.input.MouseEvent;
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -28,9 +36,13 @@ public class MainWindowViewController {
 	@FXML
 	private Slider secondPhase;
 	@FXML
-	private Label lab;
+	private ImageView pic;
 	@FXML
 	private Canvas figure;
+	@FXML
+	private Rectangle rectangle;
+	private double qwe;
+	
 	private GraphicsContext gc;
 	private boolean switchOn;
 
@@ -51,17 +63,28 @@ public class MainWindowViewController {
 		this.switchOn = false;
 		this.mainApp = mainApp;
 		this.gc = this.figure.getGraphicsContext2D();
-		gc.setFill(Color.WHITE);
+		gc.setFill(Color.BLACK);
 		gc.setLineWidth(4.0);
 		this.SetListeners();
+		
 
-	}
+		pic.setOnMouseDragged(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent mouseEvent) {
+				pic.setRotate(mouseEvent.getSceneX() % 360);
+				// System.out.println(mouseEvent.getX());
+				System.out.println(pic.getRotate() );
+				draw();
+			}
+		});
 
-	private void setLab(int value) {
-		this.lab.setText(Integer.toString(value));
 	}
 
 	private void SetListeners() {
+		//this.pic.rota.addListener((observable, oldValue, newValue) -> {
+		//	draw();
+		//});
+		
 		this.firstFrequency.valueProperty().addListener((observable, oldValue, newValue) -> {
 			draw();
 		});
@@ -74,16 +97,21 @@ public class MainWindowViewController {
 		this.secondPhase.valueProperty().addListener((observable, oldValue, newValue) -> {
 			draw();
 		});
+		
 	}
 
 	private void draw() {
-		if(this.switchOn==true) {
+		if (this.switchOn == true) {
 			gc.clearRect(0, 0, 400, 500);
 			for (int i = 0; i < 100000; i++) {
-				gc.strokeOval((int) ((Math.sin(i * getFirstFrequency() + getFirstPhase()) + 1.2) * 100),
+				gc.strokeOval((int) ((Math.sin(i * getFirstFrequency() + get()/100) + 1.2) * 100),
 						(int) ((Math.cos(i * getSecondFrequency() + getSecondPhase()) + 1.0) * 100), 1, 1);
 			}
 		}
+	}
+
+	public double get() {
+		return  pic.getRotate();
 	}
 
 	public int getFirstFrequency() {
@@ -100,17 +128,6 @@ public class MainWindowViewController {
 
 	public double getSecondPhase() {
 		return this.secondPhase.getValue();
-	}
-
-	private double getX(int time) {
-		double q = 2 * time + getFirstPhase();
-		double ssin = Math.sin(time * getFirstPhase());
-		return (getFirstPhase() * ssin);
-	}
-
-	private double getY(int time) {
-		double ssin = Math.sin(time);
-		return (getSecondFrequency() * ssin);
 	}
 
 	@FXML
